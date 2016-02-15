@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 import Album from './album';
-class List extends React.Component {
+
+class List extends Component {
 
   renderAlbums() {
-    return <Album artist="Pink Floyd" title="Wish You Were Here" />;
+    return this.props.albums.map((album, i) => {
+      return <Album artist={ album.artist } title={ album.title } key={ i } />;
+    });
   }
 
   render() {
@@ -23,5 +26,12 @@ class List extends React.Component {
   }
 
 }
+
+List.propTypes = {
+  albums: PropTypes.arrayOf(PropTypes.shape({
+    artist: PropTypes.string,
+    title: PropTypes.string
+  }))
+};
 
 export default List;

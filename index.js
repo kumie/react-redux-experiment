@@ -1,5 +1,14 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import Albums from './components';
+import { render } from 'react-dom';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import App from './containers/app';
+import store from './reducers/albums-store';
+import styles from './albums.scss';
 
-ReactDOM.render(<Albums />, document.querySelector('.outlet'));
+render(
+    <Provider store={ createStore(store) }>
+      <App />
+    </Provider>,
+    document.querySelector('.outlet')
+);

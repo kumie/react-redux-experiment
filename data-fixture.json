@@ -1,13 +1,13 @@
 [
   {
-    "Artist": "Pink Floyd",
-    "Title": "Wish You Were Here",
-    "Id": "1"
+    "artist": "Pink Floyd",
+    "title": "Wish You Were Here",
+    "id": "1"
   },
 
   {
-    "Artist": "Pearl Jam",
-    "Title": "Riot Act",
-    "Id": "2"
+    "artist": "Pearl Jam",
+    "title": "Riot Act",
+    "id": "2"
   }
 ]
