@@ -1,11 +1,15 @@
 import React from 'react';
+import isFunction from 'lodash/isFunction';
 
 class Form extends React.Component {
 
   handleSubmit(evt) {
     evt.preventDefault();
     const { artist, title } = this.refs;
-    this.props.onSubmit({ artist: artist.value, title: title.value });
+
+    if (isFunction(this.props.onSubmit)) {
+      this.props.onSubmit({ artist: artist.value, title: title.value });
+    }
   }
 
   render() {

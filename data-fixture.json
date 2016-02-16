@@ -2,12 +2,18 @@
   {
     "artist": "Pink Floyd",
     "title": "Wish You Were Here",
-    "id": "1"
+    "id": 1
   },
 
   {
     "artist": "Pearl Jam",
     "title": "Riot Act",
-    "id": "2"
+    "id": 2
+  },
+
+  {
+    "artist": "The Aggrolites",
+    "title": "Dirty Reggae",
+    "id": 3
   }
 ]

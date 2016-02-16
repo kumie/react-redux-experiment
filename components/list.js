@@ -1,11 +1,17 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import Album from './album';
 
-class List extends Component {
+class List extends React.Component {
 
   renderAlbums() {
-    return this.props.albums.map((album, i) => {
-      return <Album artist={ album.artist } title={ album.title } key={ i } />;
+    return this.props.albums.map((album) => {
+      const { id } = album;
+      return <Album
+              artist={ album.artist }
+              title={ album.title }
+              key={ id }
+              onRemove={ this.props.onRemove.bind(this, id) }
+            />;
     });
   }
 
@@ -16,6 +22,7 @@ class List extends Component {
             <tr>
               <td>Artist</td>
               <td>Title</td>
+              <td />
             </tr>
           </thead>
           <tbody>

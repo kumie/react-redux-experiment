@@ -1,23 +1,42 @@
+import map from 'lodash/map';
+import omit from 'lodash/omit';
+import reject from 'lodash/reject';
 import actionTypes from '../action-types';
 import fixture from '../data-fixture';
-import assign from 'lodash/assign';
-import map from 'lodash/map';
 
 const initialState = {
   albums: fixture
 };
 
-const store = (state = initialState, action = {}) => {
+const createAlbum = (data, state) => {
+  let { albums } = state;
+
+  data.id = albums.length ? Math.max.apply(Math, map(albums, 'id')) + 1 : 1;
+
+  albums = albums.slice(0);
+  albums.push(data);
+
+  const newState = { ...state };
+  newState.albums = albums;
+
+  return newState;
+};
+
+const removeAlbum = (id, state) => {
+  const newState = { ...state };
+
+  newState.albums = reject(newState.albums, { id });
+
+  return newState;
+};
+
+const store = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.ADD:
-      //const data = _.without(action, 'type');
-      const id = Math.max.apply(Math, map(state.albums, 'id')) + 1;
+      return createAlbum(omit(action, 'type'), state);
 
-      return assign(
-          {},
-          state,
-          { albums: [{ id: action.id, artist: action.artist, title: action.title }], ...state.albums }
-      );
+    case actionTypes.REMOVE:
+      return removeAlbum(action.id, state);
 
     default:
       return state;

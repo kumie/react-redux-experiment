@@ -1,17 +1,24 @@
-import React, { Component } from 'react';
-import { bindActionCreators } from 'redux';
+import React from 'react';
 import { connect } from 'react-redux';
 import List from '../components/list';
 import Form from '../components/form';
 import actions from '../actions/album-actions';
 
-class App extends Component {
+class App extends React.Component {
+
+  handleFormSubmit({ artist, title }) {
+    this.props.dispatch(actions.add({ artist, title }));
+  }
+
+  handleRemove(id) {
+    this.props.dispatch(actions.remove(id));
+  }
 
   render() {
     return (
         <div>
-          <List albums={ this.props.albums } />
-          <Form onSubmit={ actions.add } actions={ actions } />
+          <List albums={ this.props.albums } onRemove={ this.handleRemove.bind(this) } />
+          <Form onSubmit={ this.handleFormSubmit.bind(this) } />
         </div>
     );
   }
@@ -20,6 +27,6 @@ class App extends Component {
 
 const mapStateToProps = (state) => state;
 
-const mapDispatchToProps = (dispatch) => ({ actions: bindActionCreators(actions, dispatch) });
+const mapDispatchToProps = (dispatch) => ({ dispatch });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
