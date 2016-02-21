@@ -36,9 +36,10 @@ class List extends React.Component {
 
 List.propTypes = {
   albums: PropTypes.arrayOf(PropTypes.shape({
-    artist: PropTypes.string,
-    title: PropTypes.string
-  }))
+    artist: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired
+  })),
+  onRemove: PropTypes.func.isRequired
 };
 
 export default List;

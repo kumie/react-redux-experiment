@@ -1,5 +1,4 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React, { PropTypes } from 'react';
 import List from '../components/list';
 import Form from '../components/form';
 import actions from '../actions/album-actions';
@@ -25,8 +24,12 @@ class App extends React.Component {
 
 }
 
-const mapStateToProps = (state) => state;
+App.proptypes = {
+  dispatch: PropTypes.func.isRequired,
+  albums: PropTypes.arrayOf(PropTypes.shape({
+    artist: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired
+  }))
+};
 
-const mapDispatchToProps = (dispatch) => ({ dispatch });
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;

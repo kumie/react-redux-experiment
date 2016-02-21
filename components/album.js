@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
 class Album extends React.Component {
 
@@ -15,5 +15,11 @@ class Album extends React.Component {
   }
 
 }
+
+Album.propTypes = {
+  artist: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  onRemove: PropTypes.func.isRequired
+};
 
 export default Album;

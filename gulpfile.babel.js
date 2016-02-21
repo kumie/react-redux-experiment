@@ -37,7 +37,7 @@ gulp.task('build', () => {
 gulp.task('default', ['build']);
 
 gulp.task('test', () => {
-  return gulp.src('test/index.js')
+  return gulp.src('test/**/*-spec.js')
       .pipe(jasmine({
         verbose: true,
         includeStackTrace: true

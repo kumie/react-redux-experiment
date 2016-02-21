@@ -1,5 +1,4 @@
-import React from 'react';
-import isFunction from 'lodash/isFunction';
+import React, { PropTypes } from 'react';
 
 class Form extends React.Component {
 
@@ -7,9 +6,7 @@ class Form extends React.Component {
     evt.preventDefault();
     const { artist, title } = this.refs;
 
-    if (isFunction(this.props.onSubmit)) {
-      this.props.onSubmit({ artist: artist.value, title: title.value });
-    }
+    this.props.onSubmit({ artist: artist.value, title: title.value });
   }
 
   render() {
@@ -23,5 +20,9 @@ class Form extends React.Component {
   }
 
 }
+
+Form.propTypes = {
+  onSubmit: PropTypes.func.isRequired
+};
 
 export default Form;
